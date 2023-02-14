@@ -1,0 +1,50 @@
+:root {
+  --primary: rgba(134, 134, 134, 0.553);
+  --secondary: #3f60c5;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  /* background: var(--primary); */
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 30px;
+}
+
+.rounded-checkbox {
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid black !important;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.rounded-checkbox:checked {
+  appearance: auto;
+  clip-path: circle(50% at 50% 50%);
+  background-color: var(--secondary);
+}
+
+.todo-rounded-checkbox {
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid white;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.todo-rounded-checkbox:checked {
+  appearance: auto;
+  clip-path: circle(50% at 50% 50%);
+  background-color: var(--secondary);
+}
