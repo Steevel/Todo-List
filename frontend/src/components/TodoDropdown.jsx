@@ -26,12 +26,7 @@ const TodoDropdown = ({ todo }) => {
                         {({ active }) => (
                             <div className={`flex flex-row p-2 gap-2 rounded-md ${active && 'bg-secondary ring-1 ring-grayshade'}`}>
                                 <span><img src={EditIcon} alt="edit icon" /></span>
-                                <a
-                                    className=""
-                                    href="#"
-                                >
-                                    Edit
-                                </a>
+                                <span>Edit</span>
                             </div>
                         )}
                     </Menu.Item>
@@ -40,12 +35,7 @@ const TodoDropdown = ({ todo }) => {
                         {({ active }) => (
                             <div className={`flex flex-row p-2 gap-2 rounded-md ${active && 'bg-secondary ring-1 ring-grayshade'}`}>
                                 <span><img src={TrashIcon} alt="trash icon" /></span>
-                                <a
-                                    className=""
-                                    href="#"
-                                >
-                                    Delete
-                                </a>
+                                <span>Delete</span>
                             </div>
                         )}
                     </Menu.Item>
