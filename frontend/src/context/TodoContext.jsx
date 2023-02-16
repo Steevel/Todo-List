@@ -34,11 +34,13 @@ export const TodoContextProvider = (props) => {
     }
 
     // Edit todo
-    const editTodo = async (todoId, todoTitle) => {
-        await axios.put(`http://localhost:4000/edittodo/${todoId}`, {
-            title: todoTitle,
-        })
-        getTodos()
+    const editTodo = async (updatedTodo) => {
+        try {
+            await axios.put(`http://localhost:4000/edittodo/${updatedTodo._id}`, updatedTodo)
+            getTodos()
+        } catch (error) {
+            console.log("Error while editing Todo: " + error.message);
+        }
     }
 
     /*

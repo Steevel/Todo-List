@@ -2,17 +2,15 @@ import React, { useState, useContext } from 'react'
 import { TodoContext } from '../context/TodoContext'
 import MoreIcon from '../assets/more.svg'
 import EditIcon from '../assets/edit.svg'
-// import StarIcon from '../assets/star.svg'
 import TrashIcon from '../assets/trash.svg'
 import { Menu } from '@headlessui/react'
 import EditTodoModal from './EditTodoModal'
 
-const TodoDropdown = ({ todoTitle, todoId }) => {
+const TodoDropdown = ({ todo }) => {
 
     let [isOpen, setIsOpen] = useState(false)
 
-    const value = useContext(TodoContext)
-    const deleteTodo = value.deleteTodo
+    const { deleteTodo } = useContext(TodoContext)
 
     const handleDelete = (todoId) => {
         deleteTodo(todoId)
@@ -38,7 +36,7 @@ const TodoDropdown = ({ todoTitle, todoId }) => {
                         )}
                     </Menu.Item>
 
-                    <Menu.Item onClick={() => handleDelete(todoId)}>
+                    <Menu.Item onClick={() => handleDelete(todo._id)}>
                         {({ active }) => (
                             <div className={`flex flex-row p-2 gap-2 rounded-md ${active && 'bg-secondary ring-1 ring-grayshade'}`}>
                                 <span><img src={TrashIcon} alt="trash icon" /></span>
@@ -54,7 +52,7 @@ const TodoDropdown = ({ todoTitle, todoId }) => {
                 </Menu.Items>
             </Menu>
 
-            {isOpen && <EditTodoModal isOpen={isOpen} setIsOpen={setIsOpen} todoId={todoId} todoTitle={todoTitle} />}
+            {isOpen && <EditTodoModal isOpen={isOpen} setIsOpen={setIsOpen} todo={todo} />}
         </div>
     )
 }

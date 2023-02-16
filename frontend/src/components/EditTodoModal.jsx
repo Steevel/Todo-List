@@ -2,22 +2,21 @@ import React, { useContext, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { TodoContext } from '../context/TodoContext'
 
-const EditTodoModal = ({ isOpen, setIsOpen, todoId, todoTitle }) => {
+const EditTodoModal = ({ isOpen, setIsOpen, todo }) => {
 
-    const [editedTodoTitle, setEditedTodoTitle] = useState(todoTitle)
-    const value = useContext(TodoContext)
-    const editTodo = value.editTodo
+    const [editedTodoTitle, setEditedTodoTitle] = useState(todo.title)
+    const { editTodo } = useContext(TodoContext)
 
     const handleInput = (e) => {
         setEditedTodoTitle(e.target.value)
     }
 
     const handleEditTodo = () => {
-        if (editedTodoTitle != "") {
-            editTodo(todoId, editedTodoTitle)
+        if (editedTodoTitle !== "") {
+            const updatedTodo = { ...todo, title: editedTodoTitle }
+            editTodo(updatedTodo)
             setIsOpen(false)
         }
-
     }
 
     return (
