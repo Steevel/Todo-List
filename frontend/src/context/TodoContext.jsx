@@ -31,6 +31,8 @@ export const TodoContextProvider = (props) => {
     const deleteTodo = async (todoId) => {
         await axios.delete(`http://localhost:4000/deletetodo/${todoId}`)
         getTodos()
+        setTaskList([])
+        setActiveTodoId("")
     }
 
     // Edit todo
@@ -67,22 +69,19 @@ export const TodoContextProvider = (props) => {
 
     // Edit task
     const editTask = async (todoid, taskid, updatedtask) => {
-
         // Update task in the backend
-        await axios.put(`http://localhost:4000/edittask/${todoid}/${taskid}`, {
-            updatedtask
-        })
+        await axios.put(`http://localhost:4000/edittask/${todoid}/${taskid}`, updatedtask)
 
         // Update task in the frontend
         const updatedTaskList = taskList.filter(taskItem => {
             if (taskItem._id === taskid) {
-                taskItem.task = updatedtask
+                taskItem.task = updatedtask.task
+                taskItem.isCompleted = updatedtask.isCompleted
             }
+
             return taskItem
         })
-
         setTaskList(updatedTaskList)
-
     }
 
     // Create task
