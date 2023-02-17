@@ -5,8 +5,7 @@ import { TodoContext } from '../context/TodoContext'
 const EditTaskModal = ({ isOpen, setIsOpen, todoid, taskid, task }) => {
 
     const [editedTask, setEditedTask] = useState(task)
-    const value = useContext(TodoContext)
-    const editTask = value.editTask
+    const { editTask } = useContext(TodoContext)
 
     const handleInput = (e) => {
         setEditedTask(e.target.value)

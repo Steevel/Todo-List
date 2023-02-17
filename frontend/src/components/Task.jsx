@@ -8,8 +8,7 @@ import EditTaskModal from './EditTaskModal'
 const Task = ({ todoid, taskid, task }) => {
 
     let [isOpen, setIsOpen] = useState(false)
-    const value = useContext(TodoContext)
-    const deleteTask = value.deleteTask
+    const { deleteTask } = useContext(TodoContext)
 
     // Handle delete task
     const handleDeleteTask = (todoid, taskid) => {

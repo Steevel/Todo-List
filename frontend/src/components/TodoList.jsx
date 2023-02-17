@@ -7,7 +7,8 @@ const TodoList = () => {
 
     useEffect(() => {
         getTodos();
-    }, [getTodos]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className="w-full h-full relative">

@@ -4,13 +4,8 @@ import FAB from './FAB'
 import Task from './Task'
 
 const TaskList = () => {
-
     const [fabState, setFabState] = useState(false)
-
-    const value = useContext(TodoContext)
-    const tasks = value.taskList
-    const activeTodoId = value.activeTodoId
-    const getTodos = value.getTodos
+    const { taskList, activeTodoId, getTodos } = useContext(TodoContext)
 
     // Display add task FAB when todo is active
     useEffect(() => {
@@ -18,15 +13,16 @@ const TaskList = () => {
         if (activeTodoId) {
             setFabState(true)
         }
-    }, [activeTodoId, tasks])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeTodoId, taskList])
 
     return (
         <div className='mt-7'>
             <h1 className='text-3xl font-semibold border-b-4 text-headingcolor border-secondary pb-3 mb-1'>Your Tasks</h1>
             <div className="absolute w-full h-4/5 overflow-y-auto overflow-x-hidden pr-2">
-                {tasks.length > 0 ? tasks.map((taskItem) =>
+                {taskList.length > 0 ? taskList.map((taskItem) =>
                     <Task key={taskItem._id} todoid={activeTodoId} taskid={taskItem._id} task={taskItem.task} />
-                ) : <p className="h-full w-full text-2xl flex items-center justify-center">Add some tasks to your todo!</p>}
+                ) : <p className="h-full w-full text-2xl flex items-center justify-center">{activeTodoId ? "Add some tasks to your todo!" : "Click on a Todo to display Tasks!"}</p>}
             </div>
             {fabState && <FAB />}
         </div>

@@ -6,9 +6,7 @@ import { TodoContext } from '../context/TodoContext'
 const CreateTaskModal = ({ isOpen, setIsOpen }) => {
 
     const [newTask, setNewTask] = useState("")
-    const value = useContext(TodoContext)
-    const activeTodoId = value.activeTodoId
-    const createTask = value.createTask
+    const { activeTodoId, createTask } = useContext(TodoContext)
 
     const handleInput = (e) => {
         setNewTask(e.target.value)

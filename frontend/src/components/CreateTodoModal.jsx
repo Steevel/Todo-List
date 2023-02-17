@@ -5,8 +5,7 @@ import { TodoContext } from '../context/TodoContext'
 const CreateTodoModal = ({ isOpen, setIsOpen }) => {
 
     const [newTodo, setNewTodo] = useState("")
-    const value = useContext(TodoContext)
-    const createTodo = value.createTodo
+    const { createTodo } = useContext(TodoContext)
 
     const handleInput = (e) => {
         setNewTodo(e.target.value)
