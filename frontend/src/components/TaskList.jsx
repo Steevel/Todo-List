@@ -5,14 +5,12 @@ import Task from './Task'
 
 const TaskList = () => {
     const [fabState, setFabState] = useState(false)
-    const { taskList, activeTodoId, getTodos } = useContext(TodoContext)
+    const { taskList, activeTodoId } = useContext(TodoContext)
 
     // Display add task FAB when todo is active
     useEffect(() => {
-        getTodos()
         activeTodoId ? setFabState(true) : setFabState(false)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeTodoId, taskList])
+    }, [activeTodoId])
 
     return (
         <div className='mt-7'>

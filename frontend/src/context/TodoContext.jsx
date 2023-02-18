@@ -10,7 +10,7 @@ export const TodoContextProvider = (props) => {
     const [activeTodoId, setActiveTodoId] = useState("")
 
     /*
-        TODOS =========================================
+        =================== TODOS ===================
     */
 
     // Get all todos
@@ -46,7 +46,7 @@ export const TodoContextProvider = (props) => {
     }
 
     /*
-        TASKS =============================================
+        =================== TASKS ===================
     */
 
     // Set the tasks for active todo
@@ -99,8 +99,13 @@ export const TodoContextProvider = (props) => {
         setTaskList(updatedTaskArray)
     }
 
+    const search = async (query) => {
+        const res = await axios.get(`http://localhost:4000/search?q=${query}`)
+        setTodoList(res.data.searchResult)
+    }
+
     return (
-        <TodoContext.Provider value={{ todoList, setTasks, deleteTask, taskList, editTask, createTask, getTodos, activeTodoId, createTodo, deleteTodo, editTodo }}>
+        <TodoContext.Provider value={{ todoList, setTasks, deleteTask, taskList, editTask, createTask, getTodos, activeTodoId, createTodo, deleteTodo, editTodo, search }}>
             {props.children}
         </TodoContext.Provider>
     );

@@ -204,7 +204,7 @@ exports.search = async (req, res) => {
 
         res.status(200).send({
             success: true,
-            result: searchResult,
+            searchResult,
         });
     } catch (error) {
         console.log(error.message);
