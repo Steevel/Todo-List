@@ -96,7 +96,16 @@ export const TodoContextProvider = (props) => {
 
         // Update the task list
         const updatedTaskArray = res.data.tasks
-        setTaskList(updatedTaskArray)
+
+        const updatedTodoList = todoList.map((todo) => {
+            if (todo._id === todoid) {
+                todo.tasks = updatedTaskArray
+                return todo
+            }
+            return todo
+        })
+        setTodoList(updatedTodoList)
+        setTaskList(updatedTaskArray)//TODO: Find the todo from the todoList and set its task to updatedTaskArray. After that update the tasklist.
     }
 
     const search = async (query) => {
