@@ -64,7 +64,16 @@ export const TodoContextProvider = (props) => {
     // Delete a task
     const deleteTask = async (todoid, taskid) => {
         await axios.delete(`http://localhost:4000/deletetask/${todoid}/${taskid}`)
-        setTaskList(taskList.filter(task => task._id !== taskid))
+        const updatedTasks = taskList.filter(task => task._id !== taskid)
+        const updatedTodos = todoList.map((todo) => {
+            if (todo._id === todoid) {
+                todo.tasks = updatedTasks
+                return todo
+            }
+            return todo
+        })
+        setTodoList(updatedTodos)
+        setTaskList(updatedTasks)
     }
 
     // Edit task
@@ -105,7 +114,7 @@ export const TodoContextProvider = (props) => {
             return todo
         })
         setTodoList(updatedTodoList)
-        setTaskList(updatedTaskArray)//TODO: Find the todo from the todoList and set its task to updatedTaskArray. After that update the tasklist.
+        setTaskList(updatedTaskArray)
     }
 
     const search = async (query) => {
