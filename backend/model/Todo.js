@@ -6,6 +6,7 @@ const TodoSchema = new Schema(
     {
         title: {
             type: String,
+            trim: true,
             required: [true, "Title is required"],
         },
         isDone: {
@@ -16,6 +17,7 @@ const TodoSchema = new Schema(
             {
                 task: {
                     type: String,
+                    trim: true,
                     required: [true, "Task is required"]
                 },
                 isCompleted: {
