@@ -17,8 +17,10 @@ const CreateTaskModal = ({ isOpen, setIsOpen }) => {
     }
 
     const handleCreateTask = () => {
-        createTask(activeTodoId, newTask)
-        setIsOpen(false)
+        if (newTask !== "") {
+            createTask(activeTodoId, newTask)
+            setIsOpen(false)
+        }
     }
 
     return (

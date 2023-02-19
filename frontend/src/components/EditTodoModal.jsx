@@ -8,7 +8,11 @@ const EditTodoModal = ({ isOpen, setIsOpen, todo }) => {
     const { editTodo } = useContext(TodoContext)
 
     const handleInput = (e) => {
-        setEditedTodoTitle(e.target.value)
+        if (e.key === "Enter") {
+            handleEditTodo()
+        } else {
+            setEditedTodoTitle(e.target.value)
+        }
     }
 
     const handleEditTodo = () => {
@@ -27,7 +31,7 @@ const EditTodoModal = ({ isOpen, setIsOpen, todo }) => {
             <div className="fixed inset-0 flex items-center justify-center p-4 ">
                 <Dialog.Panel className="bg-white rounded-xl p-6 w-1/3">
                     <Dialog.Title className="text-black text-2xl font-semibold">Edit Todo Title</Dialog.Title>
-                    <input className="placeholder:italic placeholder:grayshade placeholder:text-base block w-full my-5 bg-secondary rounded-lg py-2 pl-6 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm" placeholder="Add new title..." type="text" name="add todo" value={editedTodoTitle} onChange={(e) => handleInput(e)} />
+                    <input className="placeholder:italic placeholder:grayshade placeholder:text-base block w-full my-5 bg-secondary rounded-lg py-2 pl-6 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm" placeholder="Add new title..." type="text" name="add todo" defaultValue={editedTodoTitle} onKeyUp={(e) => handleInput(e)} />
 
                     <div className="flex justify-end gap-3">
                         <button className="border-1 py-2 px-4 rounded-lg bg-btncolor text-btntextcolor" onClick={() => setIsOpen(false)}>Cancel</button>
