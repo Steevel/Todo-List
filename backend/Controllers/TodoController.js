@@ -5,6 +5,7 @@ exports.createTodo = async (req, res) => {
     const newTodo = new Todo({
         title: req.body.title,
         tasks: req.body.tasks || [],
+        user: req.user.id,
     });
 
     // Check if title is empty
@@ -22,7 +23,6 @@ exports.createTodo = async (req, res) => {
             createdNewTodo,
         });
     } catch (error) {
-        console.log(error.message);
         res.status(401).json({
             success: false,
             message: error.message,
@@ -31,8 +31,9 @@ exports.createTodo = async (req, res) => {
 };
 
 // Read Todo
-exports.getTodos = async (_req, res) => {
-    const todos = await Todo.find();
+exports.getTodos = async (req, res) => {
+    const todos = await Todo.find({ user: req.user.id });
+    // const todos = await Todo.find();
 
     if (!todos) {
         res.status(401).send("No todos found!");
@@ -56,7 +57,6 @@ exports.editTodo = async (req, res) => {
             updates: req.body,
         });
     } catch (error) {
-        console.log(error);
         res.status(401).json({
             success: false,
             message: error.message,
@@ -96,7 +96,6 @@ exports.createTask = async (req, res) => {
             tasks: todo.tasks,
         });
     } catch (error) {
-        console.log(error.message);
         res.status(401).json({
             success: false,
             message: error.message,
@@ -141,7 +140,6 @@ exports.editTask = async (req, res) => {
             tasks: todo,
         });
     } catch (error) {
-        console.log(error.message);
         res.status(401).json({
             success: false,
             message: error.message,
@@ -177,7 +175,6 @@ exports.deleteTask = async (req, res) => {
             tasks: updatedTasksList,
         });
     } catch (error) {
-        console.log(error.message);
         res.status(401).json({
             success: false,
             message: error.message,
@@ -207,7 +204,6 @@ exports.search = async (req, res) => {
             searchResult,
         });
     } catch (error) {
-        console.log(error.message);
         res.status(401).json({
             success: false,
             message: error.message,

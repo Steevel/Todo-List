@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
-import TodoItem from './TodoItem'
-import { TodoContext } from '../context/TodoContext'
+import React, { useContext, useEffect } from "react";
+import TodoItem from "./TodoItem";
+import { TodoContext } from "../context/TodoContext";
 
 const TodoList = () => {
-    const { todoList, getTodos } = useContext(TodoContext)
+    const { todoList, getTodos } = useContext(TodoContext);
 
     useEffect(() => {
         getTodos();
@@ -18,7 +18,7 @@ const TodoList = () => {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default TodoList
+export default TodoList;
