@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
-// import Cookies from 'universal-cookie';
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const isValidEmail = (email) => {
     const regEx =
@@ -11,6 +11,7 @@ const isValidEmail = (email) => {
 
 const LoginPage = () => {
     // const cookies = new Cookies();
+    const { setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [user, setUser] = useState({
         email: "",
@@ -30,8 +31,7 @@ const LoginPage = () => {
                     );
 
                     if (res.data.success) {
-                        // cookies.set('token', res.data.token, { path: '/' });
-                        // localStorage.setItem("token", res.data.token)
+                        setIsLoggedIn(true);
                         navigate("/home");
                     }
                 } catch (e) {

@@ -10,7 +10,7 @@ export const TodoContextProvider = (props) => {
 
     /*
           =================== TODOS ===================
-      */
+        */
 
     // Get all todos
     const getTodos = async () => {
@@ -55,7 +55,7 @@ export const TodoContextProvider = (props) => {
 
     /*
           =================== TASKS ===================
-      */
+        */
 
     // Set the tasks for active todo
     const setTasks = async (todoId) => {
@@ -132,6 +132,7 @@ export const TodoContextProvider = (props) => {
         setTaskList(updatedTaskArray);
     };
 
+    // Search Todo
     const search = async (query) => {
         const res = await axios.get(
             `http://localhost:4000/api/todo/search?q=${query}`
