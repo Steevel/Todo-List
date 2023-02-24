@@ -109,7 +109,7 @@ const SignUpPage = () => {
                     <button
                         type="submit"
                         id="signupBtn"
-                        className="bg-primary text-white bg-brown border-0 py-2 px-6 focus:outline-none hover:bg-brown rounded text-lg"
+                        className="bg-primary text-white bg-brown border-0 mt-3 mb-2 py-2 px-6 focus:outline-none hover:bg-brown rounded text-lg"
                         onClick={handleSignUp}
                     >
                         Sign Up

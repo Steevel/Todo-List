@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import SearchIcon from "../assets/searchstatus.svg";
+import LogoutIcon from "../assets/power.svg";
 import { TodoContext } from "../context/TodoContext";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -34,12 +35,12 @@ const Search = () => {
     };
 
     return (
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between items-center">
             <div className="w-2/5 ">
                 <label className="relative block">
                     {/* Search input*/}
                     <input
-                        className="placeholder:italic placeholder:grayshade placeholder:text-base block w-full bg-secondary rounded-full py-2 pl-9 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm"
+                        className="placeholder:italic placeholder:grayshade placeholder:text-base block w-full bg-secondary rounded-full py-2 pl-4 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm"
                         placeholder="Search Todo/Task..."
                         type="text"
                         name="search"
@@ -52,12 +53,13 @@ const Search = () => {
                     </span>
                 </label>
             </div>
-            <button
+            {/* <button
                 className="border-1 py-1 my-1 px-4 rounded-lg bg-btntextcolor text-white"
                 onClick={logoutUser}
             >
                 Log Out
-            </button>
+            </button> */}
+            <img className="bg-secondary hover:bg-[#FEE2E2] rounded-full w-9 h-9 p-1" src={LogoutIcon} alt="Search Icon" onClick={logoutUser} />
         </div>
     );
 };
