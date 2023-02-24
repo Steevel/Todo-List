@@ -13,9 +13,13 @@ const TodoList = () => {
     return (
         <div className="w-full h-full relative">
             <div className="absolute w-full h-full overflow-y-auto pr-2">
-                {todoList.map((todo) => (
-                    <TodoItem key={todo._id} todo={todo} />
-                ))}
+                {todoList.length > 0 ? (
+                    todoList.map((todo) => <TodoItem key={todo._id} todo={todo} />)
+                ) : (
+                    <div className="h-full flex justify-center items-center">
+                        <p className="text-white text-2xl">No Todos Found!</p>
+                    </div>
+                )}
             </div>
         </div>
     );
