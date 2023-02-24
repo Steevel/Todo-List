@@ -10,7 +10,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true }));
+app.use(cors({ credentials: true, origin: "https://tasklist-mern.netlify.app" }));
 
 // Connect to the database
 connectToDB();
