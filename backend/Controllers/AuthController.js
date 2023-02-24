@@ -42,6 +42,7 @@ exports.signUp = async (req, res) => {
     res.cookie("jwt", authtoken, {
       expire: new Date() + 9999,
       httpOnly: true,
+      sameSite: 'None',
     });
     newUser.password = undefined;
 
@@ -91,6 +92,7 @@ exports.login = async (req, res) => {
     res.cookie("jwt", authtoken, {
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      sameSite: 'None',
     });
 
     res.status(200).send({ success: true });
