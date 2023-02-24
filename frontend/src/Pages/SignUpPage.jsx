@@ -2,6 +2,7 @@ import axios from "axios";
 import { isValidEmail } from "../utils/emailValidation";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/helper";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -13,24 +14,20 @@ const SignUpPage = () => {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-
+        console.log(process.env);
         if (user.name !== "" && user.email !== "" && user.password !== "") {
             if (isValidEmail(user.email)) {
                 try {
-                    const res = await axios.post(
-                        "http://localhost:4000/api/auth/signup",
-                        user,
-                        { withCredentials: true }
-                    );
+                    const res = await axios.post(`${BASE_URL}/auth/signup`, user, {
+                        withCredentials: true,
+                    });
                     console.log("singup res", res.data);
 
                     if (res.data.success) {
                         navigate("/home");
                     }
                 } catch (e) {
-                    console.log("error", e);
-                    console.log(e.response.data);
-                    alert(e.response.data.message);
+                    alert("Error " + JSON.stringify(e.response.data.message));
                 }
             } else {
                 alert("Please enter a valid email address");

@@ -3,6 +3,7 @@ import axios from "axios";
 import { isValidEmail } from "../utils/emailValidation";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { BASE_URL } from "../utils/helper";
 
 const LoginPage = () => {
     const { setIsLoggedIn } = useContext(AuthContext);
@@ -18,18 +19,16 @@ const LoginPage = () => {
         if (user.email !== "" && user.password !== "") {
             if (isValidEmail(user.email)) {
                 try {
-                    const res = await axios.post(
-                        "http://localhost:4000/api/auth/login",
-                        user,
-                        { withCredentials: true }
-                    );
+                    const res = await axios.post(`${BASE_URL}/auth/login`, user, {
+                        withCredentials: true,
+                    });
 
                     if (res.data.success) {
                         setIsLoggedIn(true);
                         navigate("/home");
                     }
                 } catch (e) {
-                    alert(e.response.data.message);
+                    alert("Error " + JSON.stringify(e.response.data.message));
                 }
             } else {
                 alert("Please enter a valid email address");

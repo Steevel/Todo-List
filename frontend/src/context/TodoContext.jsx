@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../utils/helper";
 
 export const TodoContext = createContext();
 
@@ -9,12 +10,12 @@ export const TodoContextProvider = (props) => {
     const [activeTodoId, setActiveTodoId] = useState("");
 
     /*
-                =================== TODOS ===================
-              */
+                  =================== TODOS ===================
+                */
 
     // Get all todos
     const getTodos = async () => {
-        const res = await axios.get("http://localhost:4000/api/todo/gettodos", {
+        const res = await axios.get(`${BASE_URL}/todo/gettodos`, {
             withCredentials: true,
         });
         setTodoList(res.data);
@@ -23,7 +24,7 @@ export const TodoContextProvider = (props) => {
     // Create todo
     const createTodo = async (todoTitle) => {
         await axios.post(
-            "http://localhost:4000/api/todo/createtodo",
+            `${BASE_URL}/todo/createtodo`,
             {
                 title: todoTitle,
             },
@@ -34,7 +35,7 @@ export const TodoContextProvider = (props) => {
 
     // Delete todo
     const deleteTodo = async (todoId) => {
-        await axios.delete(`http://localhost:4000/api/todo/deletetodo/${todoId}`);
+        await axios.delete(`${BASE_URL}/todo/deletetodo/${todoId}`);
         getTodos();
         setTaskList([]);
         setActiveTodoId("");
@@ -44,7 +45,7 @@ export const TodoContextProvider = (props) => {
     const editTodo = async (updatedTodo) => {
         try {
             await axios.put(
-                `http://localhost:4000/api/todo/edittodo/${updatedTodo._id}`,
+                `${BASE_URL}/todo/edittodo/${updatedTodo._id}`,
                 updatedTodo
             );
             getTodos();
@@ -54,8 +55,8 @@ export const TodoContextProvider = (props) => {
     };
 
     /*
-                =================== TASKS ===================
-              */
+                  =================== TASKS ===================
+                */
 
     // Set the tasks for active todo
     const setTasks = async (todoId) => {
@@ -70,9 +71,7 @@ export const TodoContextProvider = (props) => {
 
     // Delete a task
     const deleteTask = async (todoid, taskid) => {
-        await axios.delete(
-            `http://localhost:4000/api/todo/deletetask/${todoid}/${taskid}`
-        );
+        await axios.delete(`${BASE_URL}/todo/deletetask/${todoid}/${taskid}`);
         const updatedTasks = taskList.filter((task) => task._id !== taskid);
         const updatedTodos = todoList.map((todo) => {
             if (todo._id === todoid) {
@@ -89,7 +88,7 @@ export const TodoContextProvider = (props) => {
     const editTask = async (todoid, taskid, updatedtask) => {
         // Update task in the backend
         await axios.put(
-            `http://localhost:4000/api/todo/edittask/${todoid}/${taskid}`,
+            `${BASE_URL}/todo/edittask/${todoid}/${taskid}`,
             updatedtask
         );
 
@@ -107,16 +106,13 @@ export const TodoContextProvider = (props) => {
 
     // Create task
     const createTask = async (todoid, newTask) => {
-        const res = await axios.post(
-            `http://localhost:4000/api/todo/createtask/${todoid}`,
-            {
-                tasks: [
-                    {
-                        task: newTask,
-                    },
-                ],
-            }
-        );
+        const res = await axios.post(`${BASE_URL}/todo/createtask/${todoid}`, {
+            tasks: [
+                {
+                    task: newTask,
+                },
+            ],
+        });
 
         // Update the task list
         const updatedTaskArray = res.data.tasks;
@@ -135,10 +131,9 @@ export const TodoContextProvider = (props) => {
     // Search Todo
     const search = async (query) => {
         try {
-            const res = await axios.get(
-                `http://localhost:4000/api/todo/search?q=${query}`,
-                { withCredentials: true }
-            );
+            const res = await axios.get(`${BASE_URL}/todo/search?q=${query}`, {
+                withCredentials: true,
+            });
             const resultArray = res.data.searchResult;
             setTodoList(resultArray);
 
