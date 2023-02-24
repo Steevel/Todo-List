@@ -9,8 +9,8 @@ export const TodoContextProvider = (props) => {
     const [activeTodoId, setActiveTodoId] = useState("");
 
     /*
-          =================== TODOS ===================
-        */
+                =================== TODOS ===================
+              */
 
     // Get all todos
     const getTodos = async () => {
@@ -54,8 +54,8 @@ export const TodoContextProvider = (props) => {
     };
 
     /*
-          =================== TASKS ===================
-        */
+                =================== TASKS ===================
+              */
 
     // Set the tasks for active todo
     const setTasks = async (todoId) => {
@@ -134,10 +134,22 @@ export const TodoContextProvider = (props) => {
 
     // Search Todo
     const search = async (query) => {
-        const res = await axios.get(
-            `http://localhost:4000/api/todo/search?q=${query}`
-        );
-        setTodoList(res.data.searchResult);
+        try {
+            const res = await axios.get(
+                `http://localhost:4000/api/todo/search?q=${query}`,
+                { withCredentials: true }
+            );
+            const resultArray = res.data.searchResult;
+            setTodoList(resultArray);
+
+            // If the the search result is not empty set the first todo in the result as active and display its tasks
+            if (resultArray.length > 0) {
+                setActiveTodoId(resultArray[0]._id);
+                setTaskList(resultArray[0].tasks);
+            }
+        } catch (e) {
+            console.log("Context searh error ", e.message);
+        }
     };
 
     return (

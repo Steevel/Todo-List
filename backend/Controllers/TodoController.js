@@ -185,18 +185,19 @@ exports.deleteTask = async (req, res) => {
 // Search Todo/Task
 exports.search = async (req, res) => {
     const query = req.query.q;
+    const userId = req.user.id;
 
     if (!query) {
         res.status(401).send("Query not found!");
     }
 
     try {
-        // const searchResult = await Todo.find({ $or: [{ 'title': { $regex: query, $options: "i" } }, { 'tasks.task': { $regex: query, $options: "i" } }] })
         const searchResult = await Todo.find({
             $or: [
                 { title: new RegExp(query, "i") },
-                { tasks: new RegExp(query, "i") },
+                { "tasks.task": new RegExp(query, "i") },
             ],
+            user: userId,
         });
 
         res.status(200).send({

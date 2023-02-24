@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../assets/Logo.svg";
 import CreateTodo from "./CreateTodo";
 import TodoList from "./TodoList";
+import { TodoContext } from "../context/TodoContext";
 
 const Todo = () => {
+    const { getTodos } = useContext(TodoContext);
+
     function reloadPage() {
-        window.location.reload();
+        getTodos();
     }
 
     return (

@@ -7,19 +7,23 @@ import { useNavigate } from "react-router-dom";
 const Search = () => {
     const [query, setQuery] = useState("");
     const navigate = useNavigate();
-    const { search } = useContext(TodoContext);
+    const { search, getTodos } = useContext(TodoContext);
     const { setIsLoggedIn } = useContext(AuthContext);
 
     const handleInput = (e) => {
         if (e.key === "Enter") {
-            handleSearch();
+            if (query !== "") {
+                handleSearch();
+            } else {
+                getTodos();
+            }
         } else {
             setQuery(e.target.value);
         }
     };
 
     const handleSearch = () => {
-        if (query !== "") {
+        if (query.trim() !== "") {
             search(query);
         }
     };
@@ -36,7 +40,7 @@ const Search = () => {
                     {/* Search input*/}
                     <input
                         className="placeholder:italic placeholder:grayshade placeholder:text-base block w-full bg-secondary rounded-full py-2 pl-9 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm"
-                        placeholder="Search Todo..."
+                        placeholder="Search Todo/Task..."
                         type="text"
                         name="search"
                         defaultValue={query}

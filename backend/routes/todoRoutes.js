@@ -39,7 +39,7 @@ router.delete("/deletetask/:todoid/:taskid", deleteTask);
 router.put("/edittask/:todoid/:taskid", editTask);
 
 // Search Todo/Task
-router.get("/search", search);
+router.get("/search", authenticate, search);
 
 // Export the router
 module.exports = router;
