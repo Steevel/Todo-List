@@ -1,12 +1,7 @@
 import axios from "axios";
+import { isValidEmail } from "../utils/emailValidation";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-const isValidEmail = (email) => {
-    const regEx =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regEx.test(String(email).toLowerCase());
-};
 
 const SignUpPage = () => {
     const navigate = useNavigate();

@@ -1,16 +1,10 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
+import { isValidEmail } from "../utils/emailValidation";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-const isValidEmail = (email) => {
-    const regEx =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regEx.test(String(email).toLowerCase());
-};
-
 const LoginPage = () => {
-    // const cookies = new Cookies();
     const { setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [user, setUser] = useState({
