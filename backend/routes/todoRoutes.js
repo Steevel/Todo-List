@@ -14,6 +14,10 @@ const {
 } = require("../Controllers/TodoController");
 const authenticate = require("../middleware/authenticate");
 
+router.get('/test', (req, res) => {
+    res.send("<h1>Welcome to Todo App!</h1>")
+})
+
 // Create a new Todo
 router.post("/createtodo", authenticate, createTodo);
 
