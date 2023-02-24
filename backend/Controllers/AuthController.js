@@ -43,6 +43,7 @@ exports.signUp = async (req, res) => {
       expire: new Date() + 9999,
       httpOnly: true,
       sameSite: 'None',
+      secure: true,
     });
     newUser.password = undefined;
 
@@ -93,6 +94,7 @@ exports.login = async (req, res) => {
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       sameSite: 'None',
+      secure: true,
     });
 
     res.status(200).send({ success: true });
