@@ -4,7 +4,7 @@ This is full stack MERN app to keep track of all your tasks. Now you can easily 
 
 ## 🔗 Deployed Link
 
-[Live Link](https://tasklist-mern.netlify.app/ "Live")
+### [Live Link](https://tasklist-mern.netlify.app/ "Live")
 
 ## ✨ Features
 
