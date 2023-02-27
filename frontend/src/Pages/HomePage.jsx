@@ -7,7 +7,7 @@ const HomePage = () => {
     return (
         <div>
             <TodoContextProvider>
-                <div className="container mx-auto p-7 w-screen h-screen flex flex-row gap-7">
+                <div className="container flex flex-row w-screen h-screen mx-auto p-7 gap-7">
                     <div className="w-2/5 h-full">
                         <Todo />
                     </div>

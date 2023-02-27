@@ -35,12 +35,12 @@ const Search = () => {
     };
 
     return (
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row items-center justify-between">
             <div className="w-2/5 ">
                 <label className="relative block">
                     {/* Search input*/}
                     <input
-                        className="placeholder:italic placeholder:grayshade placeholder:text-base block w-full bg-secondary rounded-full py-2 pl-4 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm"
+                        className="block w-full h-12 py-2 pl-4 pr-3 rounded-full shadow-sm placeholder:italic placeholder:grayshade placeholder:text-base bg-secondary focus:outline-none focus:border-sky-500 focus:ring-grayshade focus:ring-1 sm:text-sm"
                         placeholder="Search Todo/Task..."
                         type="text"
                         name="search"
@@ -54,7 +54,7 @@ const Search = () => {
                 </label>
             </div>
             {/* <button
-                className="border-1 py-1 my-1 px-4 rounded-lg bg-btntextcolor text-white"
+                className="px-4 py-1 my-1 text-white rounded-lg border-1 bg-btntextcolor"
                 onClick={logoutUser}
             >
                 Log Out

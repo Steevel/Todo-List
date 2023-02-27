@@ -17,10 +17,10 @@ const TodoDropdown = ({ todo }) => {
     }
 
     return (
-        <div className="top-32 text-right">
+        <div className="text-right top-32">
             <Menu as="div" className="relative inline-block text-left">
                 <Menu.Button><img src={MoreIcon} alt="More Icon" /></Menu.Button>
-                <Menu.Items className="absolute right-0 mt-2 w-40 py-4 px-2 origin-top-right rounded-md bg-white text-headingcolor shadow-lg flex flex-col gap-3 focus:outline-none">
+                <Menu.Items className="absolute right-0 flex flex-col w-40 gap-3 px-2 py-4 mt-2 origin-top-right bg-white rounded-md shadow-lg text-headingcolor focus:outline-none">
                     <Menu.Item onClick={() => setIsOpen(true)}>
 
                         {({ active }) => (

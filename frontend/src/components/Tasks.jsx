@@ -4,8 +4,8 @@ import TaskList from './TaskList'
 
 const Tasks = () => {
     return (
-        <div className="bg-white rounded-3xl p-7 h-full w-full">
-            <div className="w-full h-full relative">
+        <div className="w-full h-full bg-white rounded-3xl p-7">
+            <div className="relative w-full h-full">
                 <Search />
                 <TaskList />
             </div>

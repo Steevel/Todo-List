@@ -11,13 +11,13 @@ const TodoList = () => {
     }, []);
 
     return (
-        <div className="w-full h-full relative">
-            <div className="absolute w-full h-full overflow-y-auto pr-2">
+        <div className="relative w-full h-full">
+            <div className="absolute w-full h-full pr-2 overflow-y-auto">
                 {todoList.length > 0 ? (
                     todoList.map((todo) => <TodoItem key={todo._id} todo={todo} />)
                 ) : (
-                    <div className="h-full flex justify-center items-center">
-                        <p className="text-white text-2xl">No Todos Found!</p>
+                    <div className="flex items-center justify-center h-full">
+                        <p className="text-2xl text-white">No Todos Found!</p>
                     </div>
                 )}
             </div>

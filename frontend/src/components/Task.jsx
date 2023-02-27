@@ -26,7 +26,7 @@ const Task = ({ todoid, taskItem }) => {
         <div className="bg-secondary border-2 border-white hover:border-2 hover:border-grayshade h-14 p-3.5 mt-5 w-full rounded-2xl flex flex-row items-center">
             <input type="checkbox" className="h-6 w-6 ml-0.5 rounded-full accent-primary rounded-checkbox" checked={isChecked} onChange={handleChecked} />
             <p className={`text-lg ml-5 flex-1 ${isChecked ? "line-through" : null}`}>{taskItem.task}</p>
-            <span className=" flex flex-row items-center gap-4">
+            <span className="flex flex-row items-center gap-4 ">
                 <img src={EditIcon} onClick={() => setIsOpen(true)} alt="Edit Icon" />
                 <img src={TrashIcon} onClick={() => handleDeleteTask(todoid, taskItem._id)} alt="Trash Icon" />
             </span>
